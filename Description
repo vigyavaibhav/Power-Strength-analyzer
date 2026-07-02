@@ -1,0 +1,18 @@
+# Password Strength Analyzer
+
+A responsive web application that evaluates password strength in real time.
+
+## Features
+
+- Real-time analysis
+- Progress bar
+- Password visibility toggle
+- Detects uppercase, lowercase, numbers, special characters
+- Detects common passwords
+- Responsive design
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
