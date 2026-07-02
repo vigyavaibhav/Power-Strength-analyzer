@@ -1,0 +1,99 @@
+const password=document.getElementById("password");
+const bar=document.getElementById("bar");
+const strength=document.getElementById("strength");
+const toggle=document.getElementById("toggle");
+
+const commonPasswords=[
+"123456",
+"password",
+"qwerty",
+"admin",
+"111111",
+"abc123"
+];
+
+toggle.onclick=()=>{
+
+if(password.type=="password"){
+
+password.type="text";
+toggle.innerHTML="Hide";
+
+}else{
+
+password.type="password";
+toggle.innerHTML="Show";
+
+}
+
+}
+
+password.addEventListener("input",()=>{
+
+let value=password.value;
+
+let score=0;
+
+const length=value.length>=8;
+const upper=/[A-Z]/.test(value);
+const lower=/[a-z]/.test(value);
+const number=/[0-9]/.test(value);
+const special=/[^A-Za-z0-9]/.test(value);
+
+document.getElementById("length").innerHTML=length?" Minimum 8 Characters":" Minimum 8 Characters";
+document.getElementById("upper").innerHTML=upper?" Uppercase":"Uppercase";
+document.getElementById("lower").innerHTML=lower?"Lowercase":" Lowercase";
+document.getElementById("number").innerHTML=number?"Number":" Number";
+document.getElementById("special").innerHTML=special?"Special Character":" Special Character";
+
+if(length)score++;
+if(upper)score++;
+if(lower)score++;
+if(number)score++;
+if(special)score++;
+
+if(commonPasswords.includes(value.toLowerCase())){
+
+strength.innerHTML="Very Weak (Common Password)";
+bar.style.width="20%";
+bar.style.background="red";
+return;
+
+}
+
+switch(score){
+
+case 0:
+case 1:
+bar.style.width="20%";
+bar.style.background="red";
+strength.innerHTML="Weak";
+break;
+
+case 2:
+bar.style.width="40%";
+bar.style.background="orange";
+strength.innerHTML="Medium";
+break;
+
+case 3:
+bar.style.width="60%";
+bar.style.background="#facc15";
+strength.innerHTML="Good";
+break;
+
+case 4:
+bar.style.width="80%";
+bar.style.background="#22c55e";
+strength.innerHTML="Strong";
+break;
+
+case 5:
+bar.style.width="100%";
+bar.style.background="green";
+strength.innerHTML="Very Strong";
+break;
+
+}
+
+});
